@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0605" />
+    <meta name="description" content="Authentic, vine-ripened, single-origin black pepper from the Western Ghats. Estate-direct, lab-verified, sold by the gram." />
+    <title>Noir — The purest black pepper on earth</title>
+  </head>
+  <body>
+    <div id="preloader">
+      <canvas id="storm"></canvas>
+      <div class="pl-center">
+        <div class="pl-corn"><span></span></div>
+        <div class="pl-pct"><b id="plPct">0</b><i>%</i></div>
+        <div class="pl-label">Sorting peppercorns</div>
+      </div>
+    </div>
+
+    <canvas id="gl"></canvas>
+
+    <header class="nav" id="nav">
+      <a class="logo" href="#hero">NOIR<span>pepper co.</span></a>
+      <nav>
+        <a href="#problem">The crisis</a>
+        <a href="#story">The origin</a>
+        <a href="#grades">Grades</a>
+        <a href="#process">Our process</a>
+      </nav>
+      <button class="basket" id="navInquire" aria-label="Inquire now">Inquire</button>
+    </header>
+
+    <main>
+      <!-- 1. HERO -->
+      <section id="hero">
+        <div class="hero-head">
+          <p class="kicker">Single-origin &middot; Western Ghats &middot; Estate-direct</p>
+          <h1 id="heroTitle">
+            <span class="ln"><span class="in">The purest spice on earth.</span></span>
+            <span class="ln sub"><span class="in">Uncompromised. Untouched by adulteration.</span></span>
+          </h1>
+        </div>
+        <div class="hero-bottom">
+          <div class="hero-info">
+            <p id="heroBlurb">
+              In a market flooded with hollow berries, heavy oil extraction waste, and dyed papaya seeds, we bring you authentic, vine-ripened black pepper sourced directly from pristine highland estates and crafted for those who taste the difference.
+            </p>
+            <a class="cta" id="heroCta" href="#grades">Explore our harvest &amp; grades</a>
+          </div>
+          <div class="hero-ctrl">
+            <button class="arrow" id="prev" aria-label="Previous grade">&larr;</button>
+            <div class="grade-now">
+              <b id="gTier"></b>
+              <span id="gName"></span>
+              <div class="dots" id="dots"></div>
+            </div>
+            <button class="arrow" id="next" aria-label="Next grade">&rarr;</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. THE PROBLEM (opaque: slides over the fixed 3D canvas) -->
+      <section id="problem">
+        <div class="sec-head">
+          <p class="kicker">01 &mdash; The silent crisis in your spice rack</p>
+          <h2>What are you<br />really consuming?</h2>
+          <p class="lead">
+            Walk down any supermarket aisle and you&rsquo;ll find jars of uniform, dusty black powder or lightweight berries that lack any real aromatic kick. Commercial mass production has turned one of history&rsquo;s most prized spices into a commodity stripped of its soul.
+          </p>
+        </div>
+
+        <div class="versus">
+          <figure class="vs vs-bad">
+            <img id="vsBad" alt="Mass-market pepper: hollow berries, papaya seeds and dust" />
+            <figcaption><b>Mass-market pepper</b><span>Hollow berries &middot; papaya seeds &middot; mineral-oil shine</span></figcaption>
+          </figure>
+          <div class="vs-mid" aria-hidden="true"><span>vs</span></div>
+          <figure class="vs vs-good">
+            <img id="vsGood" alt="Our pepper: dense, whole, wrinkled berries" />
+            <figcaption><b>Noir estate pepper</b><span>Dense &middot; whole &middot; single-origin</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="crisis" id="crisisList"></div>
+
+        <div class="pledge">
+          <p class="kicker">Our pledge</p>
+          <p class="pledge-text">
+            We broke away from the supply chain entirely. What you buy from us is <em>single-origin, meticulously graded, and packed to preserve every microgram of natural essential oil.</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. THE GENESIS (transparent, pinned: the 3D pouch returns behind it) -->
+      <section id="story">
+        <div class="story-head">
+          <p class="kicker">02 &mdash; The genesis &middot; where gold grows</p>
+        </div>
+        <div class="story-word" id="storyWord">MIST</div>
+        <div class="chapters" id="chapters"></div>
+        <div class="chapter-bar">
+          <span class="cb-label" id="cbLabel">01 &mdash; Rooted in the mist</span>
+          <div class="cb-track"><i id="cbFill"></i></div>
+          <ul id="cbTicks"></ul>
+        </div>
+      </section>
+
+      <!-- 4. GRADES -->
+      <section id="grades">
+        <div class="sec-head">
+          <p class="kicker">03 &mdash; The art of grading</p>
+          <h2>Tailored purity.<br />Know your grade.</h2>
+          <p class="lead">
+            We believe in absolute transparency. Because every kitchen, chef and culinary artisan has a distinct requirement, we sort and categorize our harvest into three meticulous grades, available in customized quantities by the gram.
+          </p>
+        </div>
+        <div class="grade-grid" id="gradeGrid"></div>
+      </section>
+
+      <!-- 5. PROCESS -->
+      <section id="process">
+        <div class="sec-head">
+          <p class="kicker">04 &mdash; Why our process outperforms the rest</p>
+          <h2>What sets<br />us apart.</h2>
+        </div>
+        <div class="process-grid" id="processGrid"></div>
+      </section>
+
+      <!-- 6. CTA -->
+      <section id="cta">
+        <div class="storm-field" id="stormField"></div>
+        <div class="cta-inner">
+          <p class="kicker">05 &mdash; Heritage &amp; the final word</p>
+          <h2 class="cta-title"><span>Taste history.</span><span class="out">Taste purity.</span></h2>
+          <p class="cta-copy">
+            Spices once shaped empires because of their unmatched power to elevate food and heal the body. Don&rsquo;t settle for mass-market dust. Experience true, estate-grown black pepper where every single grain tells a story of soil, sun, and uncompromising integrity.
+          </p>
+          <p class="cta-ask"><b>Ready to elevate your culinary creations?</b> Inquire about our current harvest batch, check our pricing per gram, or request a sample pack for your kitchen today.</p>
+          <button class="cta big" id="ctaInquire">Inquire now &amp; secure your batch</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="foot-big">NOIR</div>
+      <p>A fan / portfolio concept for a single-origin black pepper brand. Brand name, copy and product details are illustrative. Every 3D object on this page is generated in code.</p>
+      <p class="mono">Three.js &middot; GSAP &middot; Lenis &middot; Vite</p>
+    </footer>
+
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-card">
+        <button class="modal-x" id="modalClose" aria-label="Close">&times;</button>
+        <form id="inquiryForm" novalidate>
+          <p class="kicker">Inquiry</p>
+          <h3 id="modalTitle">Secure your batch</h3>
+          <p class="modal-sub">Tell us what you need and we will reply with current harvest availability and pricing per gram.</p>
+          <div class="f-row">
+            <label>Name<input name="name" required autocomplete="name" /></label>
+            <label>Email or phone<input name="contact" required autocomplete="email" /></label>
+          </div>
+          <div class="f-row">
+            <label>Grade
+              <select name="grade" id="fGrade"></select>
+            </label>
+            <label>Quantity (grams)<input name="grams" id="fGrams" type="number" min="50" step="50" value="250" /></label>
+          </div>
+          <label>Message <small>(optional, e.g. request a sample pack)</small>
+            <textarea name="msg" rows="3"></textarea>
+          </label>
+          <p class="f-err" id="fErr" hidden>Please add your name and a way to reach you.</p>
+          <button class="cta" type="submit">Send inquiry</button>
+        </form>
+        <div class="modal-done" id="modalDone" hidden>
+          <p class="kicker">Inquiry received (demo)</p>
+          <h3>Thank you.</h3>
+          <p id="doneText"></p>
+          <button class="cta" id="doneClose">Back to the harvest</button>
+        </div>
+      </div>
+    </div>
+    <div id="toast" role="status"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
