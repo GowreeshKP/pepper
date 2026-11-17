@@ -106,7 +106,7 @@ header.hero{
 @media(max-width:860px){ .origin-grid .illus{position:static;} }
 .vines-img{
   aspect-ratio:1;border-radius:6px;border:1px solid var(--line-soft);
-  background:url("images/BlackPeppercorn_AZA+3.png") 97% 86% / 210% auto no-repeat;
+  background:url("images/BlackPeppercorn_vines.png") 97% 86% / 210% auto no-repeat;
   transition:transform 1.4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease;
 }
 .illus.vines.reveal:not(.in) .vines-img{transform:scale(1.1);}
