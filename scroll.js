@@ -118,7 +118,7 @@
      6 · Side rail: section dots + page progress line
   ------------------------------------------------------------ */
   var railDefs = [['top', 'Top'], ['crisis', 'The Problem'], ['origin', 'Origin'],
-                  ['grades', 'Grades'], ['process', 'Our Process'], ['inquire', 'Inquire']];
+                  ['grades', 'Grades'], ['process', 'Our Process'], ['order', 'Order']];
   var rail = document.createElement('div');
   rail.className = 'rail';
   rail.setAttribute('role', 'navigation');
