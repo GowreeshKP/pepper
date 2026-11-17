@@ -1,0 +1,217 @@
+/* ============================================================
+   Landing page sections — loads after styles.css + effects.css
+   ============================================================ */
+
+section[id], header[id]{scroll-margin-top:56px;}
+
+/* ---------- nav: current-section marker ---------- */
+.nav-links a.current{color:var(--paper);}
+.nav-links a.current::after{transform:scaleX(1);}
+
+/* ---------- buttons ---------- */
+.btn.big{padding:17px 36px;font-size:16px;}
+
+/* ---------- hero: full-screen, photographic ---------- */
+header.hero{
+  min-height:calc(100vh - 62px);min-height:calc(100svh - 62px);
+  display:flex;align-items:center;padding:110px 0 120px;
+}
+.hero-bg{
+  position:absolute;inset:-6% 0;z-index:0;
+  background:url("images/BlackPeppercorns.jpg") 72% center/cover no-repeat;
+  filter:brightness(.62) saturate(1.2) contrast(1.08);
+  translate:0 calc(var(--hy,0) * 1px);
+  animation:kenburns 26s ease-in-out infinite alternate;
+}
+@keyframes kenburns{
+  from{transform:scale(1.03);}
+  to{transform:scale(1.16) translateX(-1.5%);}
+}
+.hero-veil{
+  position:absolute;inset:0;z-index:0;
+  background:
+    linear-gradient(0deg,var(--bg) 0%,rgba(23,18,16,0) 32%),
+    linear-gradient(90deg,rgba(23,18,16,.97) 0%,rgba(23,18,16,.82) 42%,rgba(23,18,16,.3) 100%);
+}
+.hero-grid{grid-template-columns:1fr;}
+.hero h1{max-width:19ch;font-size:clamp(40px,6vw,74px);text-shadow:0 2px 30px rgba(0,0,0,.45);}
+.hero .hero-sub{max-width:60ch;text-shadow:0 1px 14px rgba(0,0,0,.55);}
+#dust{z-index:0;}
+
+.scroll-cue{
+  position:absolute;left:50%;bottom:30px;z-index:2;margin-left:-11px;
+  width:22px;height:38px;border:1px solid rgba(239,230,216,.4);border-radius:12px;
+  display:block;
+}
+.scroll-cue span{
+  position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;
+  background:var(--brass);border-radius:2px;
+  animation:cue 1.9s ease-in-out infinite;
+}
+@keyframes cue{
+  0%{opacity:0;transform:translateY(0);}
+  30%{opacity:1;}
+  100%{opacity:0;transform:translateY(15px);}
+}
+@media(max-width:900px){ header.hero{padding:80px 0 110px;} .hero-veil{background:linear-gradient(0deg,var(--bg) 0%,rgba(23,18,16,.2) 30%),linear-gradient(90deg,rgba(23,18,16,.84),rgba(23,18,16,.5));} }
+
+/* ---------- 2 · problem ---------- */
+.cards.three{grid-template-columns:repeat(3,1fr);}
+@media(max-width:900px){ .cards.three{grid-template-columns:1fr;} }
+
+.versus{
+  margin-top:40px;border:1px solid var(--line-soft);border-radius:6px;
+  background:var(--bg-well);overflow:hidden;
+}
+.versus-row{
+  display:grid;grid-template-columns:.7fr 1.15fr 1.15fr;gap:0;
+  border-bottom:1px solid var(--line-soft);
+}
+.versus-row:last-child{border-bottom:none;}
+.versus-row > div{padding:18px 24px;font-size:15.5px;}
+.versus-row.head > div{
+  font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  padding-top:16px;padding-bottom:16px;background:var(--bg-raise);
+}
+.versus .vs-label{
+  font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--paper-dim);display:flex;align-items:center;
+}
+.versus .bad{color:var(--paper-dim);position:relative;padding-left:48px !important;}
+.versus .good{color:var(--paper);background:rgba(200,155,75,.06);position:relative;padding-left:48px !important;}
+.versus .head .bad, .versus .head .good{padding-left:24px !important;}
+.versus .head .bad{color:#B07A6A;}
+.versus .head .good{color:var(--brass);}
+.versus .bad::before, .versus .good::before{
+  position:absolute;left:22px;top:18px;font-family:var(--mono);font-size:14px;line-height:1.7;
+}
+.versus .head .bad::before, .versus .head .good::before{content:none;}
+.versus .bad::before{content:"✕";color:#B07A6A;}
+.versus .good::before{content:"✓";color:var(--vine);}
+@media(max-width:700px){
+  .versus-row{grid-template-columns:1fr 1fr;}
+  .versus-row > div{padding:14px 16px;font-size:14.5px;}
+  .versus .bad, .versus .good{padding-left:36px !important;}
+  .versus .bad::before, .versus .good::before{left:14px;top:14px;}
+  .versus .vs-label{grid-column:1 / -1;padding-bottom:0 !important;background:var(--bg-raise);}
+  .versus-row.head > div:first-child{display:none;}
+}
+
+.pledge{max-width:780px;margin:44px 0 0;}
+.pledge p{font-size:18px;}
+
+/* ---------- 3 · origin ---------- */
+.origin-grid{align-items:start;}
+.origin-grid .illus{margin:0;position:sticky;top:96px;}
+@media(max-width:860px){ .origin-grid .illus{position:static;} }
+.vines-img{
+  aspect-ratio:1;border-radius:6px;border:1px solid var(--line-soft);
+  background:url("images/BlackPeppercorn_AZA+3.png") 97% 86% / 210% auto no-repeat;
+  transition:transform 1.4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease;
+}
+.illus.vines.reveal:not(.in) .vines-img{transform:scale(1.1);}
+.illus.vines.reveal.in:hover .vines-img{transform:scale(1.04);box-shadow:0 24px 60px rgba(0,0,0,.5);}
+.origin-grid .steps{margin-top:30px !important;}
+.origin-grid .steps li{color:var(--paper-dim);}
+.origin-grid .steps li b{font-family:var(--display);font-weight:400;font-size:19px;color:var(--paper);margin-bottom:6px;}
+
+/* ---------- 4 · grades ---------- */
+.grades{
+  margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch;
+}
+@media(max-width:960px){ .grades{grid-template-columns:1fr;} }
+.grade-card{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  background:var(--bg-raise);border:1px solid var(--line-soft);border-radius:6px;
+  padding:38px 32px 32px;
+  border-top-width:3px;
+  transition:translate .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.grade-card.reveal{
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1), filter .8s ease,
+             translate .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.grade-card.top{border-top-color:var(--brass);background:linear-gradient(180deg,rgba(200,155,75,.07),var(--bg-raise) 40%);}
+.grade-card.mid{border-top-color:var(--vine);}
+.grade-card.low{border-top-color:var(--line);}
+.grade-card:hover{translate:0 -8px;box-shadow:0 24px 50px rgba(0,0,0,.45);border-color:var(--line);}
+.grade-card.top:hover{box-shadow:0 24px 50px rgba(0,0,0,.45),0 0 44px rgba(200,155,75,.12);}
+.grade-card > *{position:relative;z-index:1;}
+.grade-ghost{
+  position:absolute !important;right:14px;top:-14px;z-index:0 !important;
+  font-family:var(--display);font-size:170px;line-height:1;color:rgba(239,230,216,.04);
+  pointer-events:none;transition:color .4s ease, transform .6s cubic-bezier(.2,.7,.2,1);
+}
+.grade-card:hover .grade-ghost{color:rgba(200,155,75,.12);transform:translateY(8px) scale(1.06);}
+.grade-badge{
+  align-self:flex-start;margin-bottom:14px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:#1A130A;background:var(--brass);padding:4px 10px;border-radius:2px;
+}
+.grade-card .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--vine);}
+.grade-card.top .tag{color:var(--brass);}
+.grade-card h3{font-family:var(--display);font-weight:400;font-size:26px;margin:10px 0 14px;line-height:1.2;}
+.grade-card p{font-size:15.5px;color:var(--paper-dim);margin-bottom:26px;}
+.grade-card .best{
+  margin-top:auto;padding-top:20px;border-top:1px solid var(--line-soft);
+  font-size:15px;color:var(--paper);
+}
+.grade-card .best span{
+  display:block;font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--paper-dim);margin-bottom:8px;
+}
+
+/* ---------- 5 · process features ---------- */
+.features{
+  margin-top:52px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--line-soft);border:1px solid var(--line-soft);border-radius:6px;overflow:hidden;
+}
+@media(max-width:1000px){ .features{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:600px){ .features{grid-template-columns:1fr;} }
+.feature{background:var(--bg-raise);padding:38px 30px 34px;}
+.feature .icon{
+  width:46px;height:46px;color:var(--brass);display:block;margin-bottom:22px;
+  transition:transform .5s cubic-bezier(.2,.7,.2,1), color .3s ease;
+}
+.feature:hover .icon{transform:translateY(-4px) rotate(-6deg) scale(1.1);color:var(--brass-hi);}
+.feature .draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s ease .3s;}
+.feature.in .draw{stroke-dashoffset:0;}
+.feature .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;color:var(--vine);}
+.feature h3{font-family:var(--display);font-weight:400;font-size:21px;line-height:1.25;margin:10px 0 10px;transition:color .3s ease;}
+.feature:hover h3{color:var(--brass-hi);}
+.feature p{font-size:15px;color:var(--paper-dim);}
+
+.stats{
+  margin-top:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  border-top:1px solid var(--line);padding-top:36px;
+}
+@media(max-width:860px){ .stats{grid-template-columns:repeat(2,1fr);} }
+.stat b{
+  display:block;font-family:var(--display);font-weight:400;
+  font-size:clamp(34px,4.4vw,52px);line-height:1.1;color:var(--brass);
+  font-variant-numeric:tabular-nums;
+}
+.stat > span{display:block;font-size:14px;color:var(--paper-dim);margin-top:8px;max-width:24ch;}
+
+/* ---------- 6 · closing ---------- */
+.final-bg{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:url("images/BlackPeppercorns.jpg") center/cover no-repeat;
+  opacity:.24;filter:saturate(.85);
+  -webkit-mask-image:radial-gradient(ellipse 90% 85% at 50% 50%,#000 25%,transparent 75%);
+          mask-image:radial-gradient(ellipse 90% 85% at 50% 50%,#000 25%,transparent 75%);
+}
+.final::before{z-index:1;}
+.final .wrap{z-index:2;}
+.final .section-lede{margin-bottom:22px;}
+.final-ask{
+  max-width:58ch;margin:0 auto 38px;color:var(--paper-dim);font-size:17.5px;
+}
+.final-ask strong{color:var(--brass);font-weight:500;}
+
+/* ---------- reduced motion ---------- */
+html.reduce-motion .hero-bg{animation:none;translate:none;}
+html.reduce-motion .scroll-cue span{animation:none;opacity:1;}
+html.reduce-motion .feature .draw{stroke-dashoffset:0;transition:none;}
+html.reduce-motion .illus.vines.reveal:not(.in) .vines-img{transform:none;}
+html.reduce-motion .grade-card:hover{translate:none;}

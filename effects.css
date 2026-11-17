@@ -1,0 +1,221 @@
+/* ============================================================
+   Animation & effects layer — loads after styles.css
+   Everything here is disabled under prefers-reduced-motion.
+   ============================================================ */
+
+/* ---------- scroll progress bar ---------- */
+#progress{
+  position:fixed;top:0;left:0;right:0;height:3px;z-index:100;
+  background:linear-gradient(90deg,var(--vine),var(--brass),var(--brass-hi));
+  transform:scaleX(0);transform-origin:left;
+  box-shadow:0 0 12px rgba(224,185,104,.55);
+  pointer-events:none;
+}
+
+/* ---------- nav: condenses + glows on scroll ---------- */
+nav{transition:background .3s ease, box-shadow .3s ease;}
+.nav-inner{transition:padding .3s ease;}
+nav.scrolled{background:rgba(23,18,16,.97);box-shadow:0 10px 30px rgba(0,0,0,.45);}
+nav.scrolled .nav-inner{padding-top:10px;padding-bottom:10px;}
+.nav-links a:not(.btn){position:relative;}
+.nav-links a:not(.btn)::after{
+  content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;
+  background:var(--brass);transform:scaleX(0);transform-origin:left;
+  transition:transform .3s ease;
+}
+.nav-links a:not(.btn):hover::after{transform:scaleX(1);}
+
+/* ---------- buttons: shine sweep + hero pulse ---------- */
+.btn{position:relative;overflow:hidden;isolation:isolate;}
+.btn::after{
+  content:"";position:absolute;top:0;bottom:0;left:-80%;width:50%;z-index:-1;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);
+  transform:skewX(-20deg);transition:left .65s ease;
+}
+.btn:hover::after{left:130%;}
+.btn:active{transform:translateY(1px) scale(.98);}
+.hero .btn:not(.ghost), .final .btn:not(.ghost){animation:pulse-ring 3.2s ease-out 2s infinite;}
+@keyframes pulse-ring{
+  0%{box-shadow:0 0 0 0 rgba(200,155,75,.5);}
+  70%,100%{box-shadow:0 0 0 18px rgba(200,155,75,0);}
+}
+
+/* ---------- hero: staged entrance ---------- */
+.hero .wrap{position:relative;z-index:1;}
+.hero-grid > div:first-child > *{
+  animation:hero-in .95s cubic-bezier(.2,.7,.2,1) backwards;
+}
+.hero-grid > div:first-child > .eyebrow{animation-delay:.10s;}
+.hero-grid > div:first-child > h1{animation-delay:.25s;}
+.hero-grid > div:first-child > .hero-sub{animation-delay:.45s;}
+.hero-grid > div:first-child > .btn{animation:hero-in .95s cubic-bezier(.2,.7,.2,1) .62s backwards, pulse-ring 3.2s ease-out 2.2s infinite;}
+.hero-grid > div:first-child > .cta-note{animation-delay:.78s;}
+@keyframes hero-in{
+  from{opacity:0;transform:translateY(28px);filter:blur(6px);}
+  to{opacity:1;transform:none;filter:blur(0);}
+}
+.hero .eyebrow::before{animation:line-grow .9s ease .3s both;transform-origin:left;}
+@keyframes line-grow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+
+/* shimmering brass headline accent */
+h1 .grade{
+  background:linear-gradient(100deg,var(--brass) 0%,var(--brass) 38%,#F7E0A6 50%,var(--brass) 62%,var(--brass) 100%);
+  background-size:260% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shimmer 6s ease-in-out 1.4s infinite;
+}
+@keyframes shimmer{
+  0%{background-position:100% 0;}
+  55%,100%{background-position:0% 0;}
+}
+
+/* floating particle dust behind the hero */
+#dust{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+
+/* ---------- hero photo: float, orbit rings, tilt ---------- */
+.hero-figure{translate:0 calc(var(--sy,0) * 1px);gap:44px;}
+.photo-wrap{
+  position:relative;width:min(320px,64vw);aspect-ratio:1;
+  animation:float 7s ease-in-out infinite;
+  transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:transform .18s ease-out;
+}
+.photo-wrap .hero-photo{
+  width:100%;height:100%;display:block;
+  animation:glow 5s ease-in-out infinite;
+}
+.photo-wrap::before{              /* spinning brass arc */
+  content:"";position:absolute;inset:-16px;border-radius:50%;z-index:-1;
+  background:conic-gradient(from 0deg,transparent 0 55%,var(--brass) 100%);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));
+          mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));
+  animation:spin 7s linear infinite;
+}
+.photo-wrap::after{               /* dashed counter-orbit */
+  content:"";position:absolute;inset:-36px;border-radius:50%;z-index:-1;
+  border:1px dashed rgba(200,155,75,.35);
+  animation:spin 46s linear infinite reverse;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes float{
+  0%,100%{translate:0 0;}
+  50%{translate:0 -14px;}
+}
+@keyframes glow{
+  0%,100%{box-shadow:inset -8px -10px 22px rgba(0,0,0,.35),0 18px 46px rgba(0,0,0,.5),0 0 0 rgba(200,155,75,0);}
+  50%{box-shadow:inset -8px -10px 22px rgba(0,0,0,.35),0 18px 46px rgba(0,0,0,.5),0 0 60px rgba(200,155,75,.28);}
+}
+.berry-caption [data-count]{display:inline-block;min-width:3.4ch;text-align:left;font-variant-numeric:tabular-nums;}
+
+/* ---------- marquee ribbon ---------- */
+.marquee{
+  overflow:hidden;background:var(--bg-well);
+  border-bottom:1px solid var(--line-soft);padding:15px 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.marquee-track{display:flex;width:max-content;animation:marquee 42s linear infinite;}
+.marquee:hover .marquee-track{animation-play-state:paused;}
+.marquee-group{display:flex;align-items:center;flex-shrink:0;}
+.marquee-group span{
+  font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--paper-dim);white-space:nowrap;padding:0 22px;
+}
+.marquee-group span.dot{color:var(--brass);padding:0;}
+.marquee-group span.hi{color:var(--brass);}
+@keyframes marquee{to{transform:translateX(-50%);}}
+
+/* ---------- richer scroll reveals ---------- */
+.reveal{
+  transform:translateY(34px) scale(.985);
+  filter:blur(4px);
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1), filter .8s ease;
+}
+.reveal.in{transform:none;filter:none;}
+.honest-col li.reveal{
+  transform:translateX(-18px);filter:none;
+  transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1), padding-left .25s ease;
+}
+.honest-col li.reveal.in{transform:none;}
+.honest-col li:hover{padding-left:10px;}
+.card.reveal{
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1), filter .8s ease, background .3s ease;
+}
+
+/* section eyebrow rule draws in */
+.eyebrow.reveal::before{transform:scaleX(0);transform-origin:left;transition:transform .9s ease .25s;}
+.eyebrow.reveal.in::before{transform:scaleX(1);}
+
+/* ---------- cursor spotlight on cards ---------- */
+.card, .honest-col, .read-next a, .spot{position:relative;}
+.spot::after{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;z-index:2;
+  background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(200,155,75,.13),transparent 60%);
+  opacity:0;transition:opacity .35s ease;
+}
+.spot:hover::after{opacity:1;}
+.card::after, .honest-col::after{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(200,155,75,.13),transparent 60%);
+  opacity:0;transition:opacity .35s ease;
+}
+.card:hover::after, .honest-col:hover::after{opacity:1;}
+.card .tag{transition:color .3s ease, letter-spacing .3s ease;}
+.card:hover .tag{color:var(--brass);letter-spacing:.26em;}
+.card h3{transition:color .3s ease;}
+.card:hover h3{color:var(--brass-hi);}
+
+.honest-col{transition:translate .35s ease, box-shadow .35s ease, border-color .35s ease;}
+.honest-col:hover{translate:0 -6px;box-shadow:0 20px 44px rgba(0,0,0,.4);border-color:var(--line);}
+.honest-col.use:hover{box-shadow:0 20px 44px rgba(0,0,0,.4),0 0 40px rgba(200,155,75,.08);}
+
+/* ---------- images: zoom-settle, hover, parallax ---------- */
+.illus img{transition:transform 1.4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease, filter .6s ease;}
+.illus.reveal:not(.in) img{transform:scale(1.1);}
+.illus.reveal.in:hover img{transform:scale(1.03);box-shadow:0 24px 60px rgba(0,0,0,.5);}
+.illus{overflow:hidden;border-radius:6px;}
+.illus.wide img{object-position:50% var(--py,50%);}
+.hero-photo{transition:filter .4s ease;}
+.hero-photo:hover{filter:brightness(1.1) saturate(1.1);}
+
+/* ---------- links & footer ---------- */
+.textlink, .honest-note a, .card a{transition:color .2s ease, letter-spacing .25s ease;}
+.textlink:hover{letter-spacing:.02em;}
+.foot-links a{display:inline-block;transition:color .2s ease, transform .25s ease;}
+.foot-links a:hover{transform:translateX(5px);}
+
+/* ---------- final CTA: breathing glow ---------- */
+.final{position:relative;overflow:hidden;}
+.final::before{
+  content:"";position:absolute;left:50%;bottom:-40%;width:760px;height:760px;
+  margin-left:-380px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(200,155,75,.18),transparent 65%);
+  animation:breathe 6s ease-in-out infinite;
+}
+.final .wrap{position:relative;z-index:1;}
+@keyframes breathe{
+  0%,100%{transform:scale(.85);opacity:.55;}
+  50%{transform:scale(1.1);opacity:1;}
+}
+
+/* ---------- reduced motion: switch it all off ---------- */
+/* html.reduce-motion is set by the inline script in <head> */
+html.reduce-motion #progress{display:none;}
+html.reduce-motion #dust{display:none;}
+html.reduce-motion .marquee-track{animation:none;}
+html.reduce-motion .hero-grid > div:first-child > *,
+html.reduce-motion .hero-grid > div:first-child > .btn,
+html.reduce-motion .hero .eyebrow::before,
+html.reduce-motion .hero .btn, html.reduce-motion .final .btn,
+html.reduce-motion .photo-wrap, html.reduce-motion .photo-wrap .hero-photo,
+html.reduce-motion .photo-wrap::before, html.reduce-motion .photo-wrap::after,
+html.reduce-motion .final::before, html.reduce-motion h1 .grade{animation:none !important;}
+html.reduce-motion h1 .grade{-webkit-text-fill-color:var(--brass);color:var(--brass);background:none;}
+html.reduce-motion .reveal, html.reduce-motion .illus.reveal:not(.in) img, html.reduce-motion .honest-col li.reveal{
+  opacity:1;transform:none;filter:none;transition:none;
+}
+html.reduce-motion .eyebrow.reveal::before{transform:none;transition:none;}
+html.reduce-motion .photo-wrap{transform:none;}
+html.reduce-motion .hero-figure{translate:none;}
+html.reduce-motion .honest-col:hover{translate:none;}

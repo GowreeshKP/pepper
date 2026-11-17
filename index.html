@@ -1,185 +1,310 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#0a0605" />
-    <meta name="description" content="Authentic, vine-ripened, single-origin black pepper from the Western Ghats. Estate-direct, lab-verified, sold by the gram." />
-    <title>Noir — The purest black pepper on earth</title>
-  </head>
-  <body>
-    <div id="preloader">
-      <canvas id="storm"></canvas>
-      <div class="pl-center">
-        <div class="pl-corn"><span></span></div>
-        <div class="pl-pct"><b id="plPct">0</b><i>%</i></div>
-        <div class="pl-label">Sorting peppercorns</div>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Purest Spice on Earth — Single-Origin, Vine-Ripened Black Pepper</title>
+<meta name="description" content="Authentic, vine-ripened black pepper from pristine Western Ghats estates. No adulteration, no middlemen — graded, lab-verified and packed by the gram.">
+<meta property="og:title" content="The Purest Spice on Earth — Single-Origin, Vine-Ripened Black Pepper">
+<meta property="og:description" content="Authentic, vine-ripened black pepper from pristine Western Ghats estates. No adulteration, no middlemen.">
+<meta property="og:image" content="images/BlackPeppercorns.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script>
+/* Motion preference: follow the OS "reduce motion" setting, unless the visitor
+   turned animations on (toggle bottom-left, or add ?motion=on to the URL). */
+(function () {
+  var d = document.documentElement;
+  var os = window.matchMedia('(prefers-reduced-motion: reduce)').matches, o = null;
+  try { o = localStorage.getItem('motion'); } catch (e) {}
+  if (/[?&]motion=on/.test(location.search)) o = 'on';
+  var reduce = o === 'off' || (os && o !== 'on');
+  if (reduce) d.classList.add('reduce-motion');
+  if (os) d.classList.add('os-reduce');
+  document.addEventListener('DOMContentLoaded', function () {
+    var b = document.getElementById('motionToggle');
+    if (!b) return;
+    b.querySelector('span').textContent = reduce ? 'Animations off · Turn on' : 'Animations on · Turn off';
+    b.setAttribute('aria-pressed', String(!reduce));
+    b.addEventListener('click', function () {
+      try { localStorage.setItem('motion', reduce ? 'on' : 'off'); } catch (e) {}
+      history.replaceState(null, '', location.pathname + location.hash);
+      location.reload();
+    });
+  });
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Karla:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="effects.css">
+<link rel="stylesheet" href="landing.css">
+<link rel="stylesheet" href="scroll.css">
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+<button class="motion-toggle" id="motionToggle" type="button" aria-pressed="false"><i aria-hidden="true"></i><span>Animations</span></button>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#top"><b>Pure</b>&nbsp;· Estate Black Pepper</a>
+    <div class="nav-links">
+      <a href="#crisis">The Problem</a>
+      <a href="#origin">Origin</a>
+      <a href="#grades">Grades</a>
+      <a href="#process">Our Process</a>
+      <a class="btn small" href="#inquire">Inquire Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 1 · HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-veil" aria-hidden="true"></div>
+  <canvas id="dust" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Single-Origin · Vine-Ripened · Western Ghats</div>
+      <h1>The Purest Spice on Earth. <span class="grade">Uncompromised. Untouched by&nbsp;Adulteration.</span></h1>
+      <p class="hero-sub">In a market flooded with hollow berries, heavy oil extraction waste, and dyed papaya seeds, we bring you authentic, vine-ripened black pepper sourced directly from pristine highland estates and crafted for those who taste the difference.</p>
+      <a class="btn big" href="#grades">Explore Our Harvest &amp; Grades</a>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#crisis" aria-label="Scroll to next section"><span></span></a>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span class="hi">Single Origin</span><span class="dot">✦</span><span>Vine-Ripened</span><span class="dot">✦</span><span class="hi">Western Ghats</span><span class="dot">✦</span><span>Hand-Harvested</span><span class="dot">✦</span><span>Sun-Dried</span><span class="dot">✦</span><span class="hi">Lab-Verified</span><span class="dot">✦</span><span>Zero Adulteration</span><span class="dot">✦</span><span>Sold by the Gram</span><span class="dot">✦</span>
+    </div>
+    <div class="marquee-group">
+      <span class="hi">Single Origin</span><span class="dot">✦</span><span>Vine-Ripened</span><span class="dot">✦</span><span class="hi">Western Ghats</span><span class="dot">✦</span><span>Hand-Harvested</span><span class="dot">✦</span><span>Sun-Dried</span><span class="dot">✦</span><span class="hi">Lab-Verified</span><span class="dot">✦</span><span>Zero Adulteration</span><span class="dot">✦</span><span>Sold by the Gram</span><span class="dot">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 2 · THE PROBLEM ============ -->
+<section id="crisis">
+  <div class="wrap">
+    <div class="eyebrow reveal">The Silent Crisis in Your Spice Rack</div>
+    <h2 class="reveal">What Are You Really Consuming?</h2>
+    <p class="section-lede reveal">Walk down any supermarket aisle, and you’ll find jars of uniform, dusty black powder or lightweight berries that lack any real aromatic kick. Commercial mass production has turned one of history's most prized spices into a commodity stripped of its soul.</p>
+
+    <div class="cards three">
+      <div class="card spot reveal">
+        <div class="tag">01 · Adulteration</div>
+        <h3>The Adulteration Trap</h3>
+        <p>Cheap, spent black pepper shells mixed with dried papaya seeds, light-weight hollow berries, and synthetic mineral oils to fake a glossy shine.</p>
+      </div>
+      <div class="card spot reveal">
+        <div class="tag">02 · Aroma</div>
+        <h3>The Aroma Deficit</h3>
+        <p>Industrial steam-cleaning and fast-kiln drying vaporize natural piperine oils—leaving you with flat heat and zero depth.</p>
+      </div>
+      <div class="card spot reveal">
+        <div class="tag">03 · Traceability</div>
+        <h3>The Broken Chain</h3>
+        <p>By the time commercial pepper passes through five different brokers, its origin is lost, its freshness is oxidized, and its quality is an unverified gamble.</p>
       </div>
     </div>
 
-    <canvas id="gl"></canvas>
+    <div class="versus reveal" role="table" aria-label="Mass-market pepper compared with our estate pepper">
+      <div class="versus-row head" role="row">
+        <div role="columnheader"></div>
+        <div role="columnheader" class="bad">Mass-market pepper</div>
+        <div role="columnheader" class="good">Our estate pepper</div>
+      </div>
+      <div class="versus-row reveal" role="row">
+        <div class="vs-label" role="rowheader">Berries</div>
+        <div class="bad" role="cell">Hollow, lightweight, mixed with papaya seeds</div>
+        <div class="good" role="cell">Dense, heavy, hand-inspected</div>
+      </div>
+      <div class="versus-row reveal" role="row">
+        <div class="vs-label" role="rowheader">Shine</div>
+        <div class="bad" role="cell">Faked with synthetic mineral oils</div>
+        <div class="good" role="cell">Washed in spring water, nothing added</div>
+      </div>
+      <div class="versus-row reveal" role="row">
+        <div class="vs-label" role="rowheader">Drying</div>
+        <div class="bad" role="cell">Steam-cleaned and fast-kiln dried</div>
+        <div class="good" role="cell">Sun-dried for 7 to 10 days</div>
+      </div>
+      <div class="versus-row reveal" role="row">
+        <div class="vs-label" role="rowheader">Origin</div>
+        <div class="bad" role="cell">Lost across five brokers</div>
+        <div class="good" role="cell">One estate, farm gate to doorstep</div>
+      </div>
+    </div>
 
-    <header class="nav" id="nav">
-      <a class="logo" href="#hero">NOIR<span>pepper co.</span></a>
-      <nav>
-        <a href="#problem">The crisis</a>
-        <a href="#story">The origin</a>
+    <div class="callout pledge reveal">
+      <div class="callout-label">Our Pledge</div>
+      <p>We broke away from the supply chain entirely. What you buy from us is single-origin, meticulously graded, and packed to preserve every microgram of natural essential oil.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 · ORIGIN ============ -->
+<section id="origin">
+  <div class="wrap origin-grid">
+    <div class="illus vines reveal">
+      <div class="vines-img" role="img" aria-label="Pepper vines heavy with green and ripening red berries on a misty hillside"></div>
+    </div>
+    <div>
+      <div class="eyebrow reveal">The Genesis — Where Gold Grows</div>
+      <h2 class="reveal">Rooted in the Mist of the Western Ghats</h2>
+      <p class="reveal">True black pepper (<em>Piper nigrum</em>) is not a factory product; it is a child of ancient soil, heavy monsoon rains, and tropical altitude.</p>
+      <p class="reveal">Our pepper is harvested by generational farmers nestled in the high-elevation slopes of the Western Ghats. Here, the soil is volcanic and rich in organic nutrients, nurturing vines that mature slowly under filtered canopy light. This slow maturation is nature’s way of packing maximum density, rich resin, and intense pungency into every single berry.</p>
+      <ol class="steps">
+        <li class="reveal"><b>Hand-Harvested at Peak Maturity</b>We never harvest green or premature spikes. Every cluster is hand-inspected and picked only when the basal berries begin to turn a rich, golden-orange hue.</li>
+        <li class="reveal"><b>Traditional Sun-Drying</b>No accelerated chemical drying or high-heat industrial kilns. Our berries are sun-dried on clean concrete and bamboo yards for 7 to 10 days until they achieve the ideal moisture equilibrium and that signature wrinkled, leathery skin.</li>
+        <li class="reveal"><b>Zero Chemical Interventions</b>Washed naturally in spring water, free from artificial waxes, chemical brighteners, or fumigants.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 · GRADES ============ -->
+<section id="grades">
+  <div class="wrap">
+    <div class="eyebrow reveal">The Art of Grading</div>
+    <h2 class="reveal">Tailored Purity: Know Your Grade</h2>
+    <p class="section-lede reveal">We believe in absolute transparency. Because every kitchen, chef, and culinary artisan has a distinct requirement, we sort and categorize our harvest into three meticulous grades, available in customized quantities by the gram.</p>
+
+    <div class="grades">
+      <article class="grade-card spot top reveal">
+        <span class="grade-ghost" aria-hidden="true">A</span>
+        <div class="grade-badge">Top Grade</div>
+        <div class="tag">Grade A</div>
+        <h3>Imperial Reserve</h3>
+        <p>Extra-bold, heavy, perfectly spherical berries with maximum density. Yields the highest piperine oil content, offering an initial sweet aroma followed by a warm, lingering, complex heat.</p>
+        <div class="best">
+          <span>Best suited for</span>
+          Gourmet cooking, high-end dining, artisan charcuterie, and table-top pepper mills.
+        </div>
+      </article>
+      <article class="grade-card spot mid reveal">
+        <span class="grade-ghost" aria-hidden="true">B</span>
+        <div class="tag">Grade B</div>
+        <h3>Select Kitchen Grade</h3>
+        <p>Uniform, clean, medium-to-large sun-certified berries. Exceptionally robust with a sharp, clean punch and dependable aromatic baseline.</p>
+        <div class="best">
+          <span>Best suited for</span>
+          Everyday culinary mastery, family kitchens, boutique catering, and sauce crafting.
+        </div>
+      </article>
+      <article class="grade-card spot low reveal">
+        <span class="grade-ghost" aria-hidden="true">C</span>
+        <div class="tag">Grade C</div>
+        <h3>Standard Grind &amp; Extract</h3>
+        <p>Fully matured, sound whole berries optimized for dense commercial crushing, spice rubs, and heavy culinary blending.</p>
+        <div class="best">
+          <span>Best suited for</span>
+          Marinades, slow-cooked broths, industrial spice formulations, and large-batch spice rubs.
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 · PROCESS ============ -->
+<section id="process">
+  <div class="wrap">
+    <div class="eyebrow reveal">Why Our Process Outperforms the Rest</div>
+    <h2 class="reveal">What Sets Us Apart</h2>
+
+    <div class="features">
+      <div class="feature spot reveal">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="draw" pathLength="1" d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/>
+          <circle class="draw" pathLength="1" cx="12" cy="10" r="2.5"/>
+        </svg>
+        <div class="tag">01</div>
+        <h3>Direct-From-Estate Traceability</h3>
+        <p>We own the relationship from farm gate to your doorstep. No middlemen, no mystery blends.</p>
+      </div>
+      <div class="feature spot reveal">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="draw" pathLength="1" d="M12 3s6 6.2 6 10.5a6 6 0 0 1-12 0C6 9.2 12 3 12 3z"/>
+          <path class="draw" pathLength="1" d="M9.5 14a2.5 2.5 0 0 0 2.5 2.5"/>
+        </svg>
+        <div class="tag">02</div>
+        <h3>High Piperine Retention</h3>
+        <p>Standard processing loses up to 40% of volatile oils. Our airtight, low-temperature sorting locks in medicinal piperine and aromatic terpenes.</p>
+      </div>
+      <div class="feature spot reveal">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="draw" pathLength="1" d="M12 3l8 3v5.5c0 4.7-3.2 8.2-8 9.5-4.8-1.3-8-4.8-8-9.5V6l8-3z"/>
+          <path class="draw" pathLength="1" d="M8.5 12l2.5 2.5 4.5-5"/>
+        </svg>
+        <div class="tag">03</div>
+        <h3>Purity Lab-Verified</h3>
+        <p>Every batch undergoes rigorous purity screenings to guarantee zero foreign matter, mold contamination, or adulterant seeds.</p>
+      </div>
+      <div class="feature spot reveal">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="draw" pathLength="1" d="M3.5 7.5L12 3l8.5 4.5v9L12 21l-8.5-4.5v-9z"/>
+          <path class="draw" pathLength="1" d="M3.5 7.5L12 12l8.5-4.5"/>
+          <path class="draw" pathLength="1" d="M12 12v9"/>
+        </svg>
+        <div class="tag">04</div>
+        <h3>Custom Gram-Scale Packaging</h3>
+        <p>Order exactly what you need—from 100g trial packs to bulk culinary jars—packaged in UV-resistant, food-grade pouches that lock in freshness.</p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat reveal"><b><span data-count="0">0</span></b><span>middlemen between farm and you</span></div>
+      <div class="stat reveal"><b>Up to <span data-count="40">40</span>%</b><span>of volatile oils lost in standard processing</span></div>
+      <div class="stat reveal"><b><span data-count="3">3</span></b><span>meticulous grades, sold by the gram</span></div>
+      <div class="stat reveal"><b><span data-count="100">100</span>g</b><span>trial packs, up to bulk culinary jars</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 · CLOSING CTA ============ -->
+<section class="final" id="inquire">
+  <div class="final-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="eyebrow center reveal">Trust, Heritage &amp; The Final Word</div>
+    <h2 class="reveal">Taste History. Taste Purity.</h2>
+    <p class="section-lede reveal">Spices once shaped empires because of their unmatched power to elevate food and heal the body. Don't settle for mass-market dust. Experience true, estate-grown black pepper where every single grain tells a story of soil, sun, and uncompromising integrity.</p>
+    <p class="final-ask reveal"><strong>Ready to elevate your culinary creations?</strong> Inquire about our current harvest batch, check our pricing per gram, or request a sample pack for your kitchen today.</p>
+    <div class="cta-pair reveal">
+      <a class="btn big" href="mailto:?subject=Harvest%20batch%20inquiry&amp;body=Hello%2C%0A%0AI%27d%20like%20to%20inquire%20about%20your%20current%20harvest%20batch%20and%20pricing%20per%20gram.%0A%0AGrade%3A%0AQuantity%20(grams)%3A%0A">Inquire Now &amp; Secure Your Batch</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#top"><b>Pure</b>&nbsp;· Estate Black Pepper</a>
+      Single-origin, vine-ripened black pepper from the Western Ghats — graded, lab-verified and packed by the gram.
+    </div>
+    <div class="foot-links">
+      <div>
+        <span>Explore</span>
+        <a href="#crisis">The Problem</a>
+        <a href="#origin">Our Origin</a>
         <a href="#grades">Grades</a>
-        <a href="#process">Our process</a>
-      </nav>
-      <button class="basket" id="navInquire" aria-label="Inquire now">Inquire</button>
-    </header>
-
-    <main>
-      <!-- 1. HERO -->
-      <section id="hero">
-        <div class="hero-head">
-          <p class="kicker">Single-origin &middot; Western Ghats &middot; Estate-direct</p>
-          <h1 id="heroTitle">
-            <span class="ln"><span class="in">The purest spice on earth.</span></span>
-            <span class="ln sub"><span class="in">Uncompromised. Untouched by adulteration.</span></span>
-          </h1>
-        </div>
-        <div class="hero-bottom">
-          <div class="hero-info">
-            <p id="heroBlurb">
-              In a market flooded with hollow berries, heavy oil extraction waste, and dyed papaya seeds, we bring you authentic, vine-ripened black pepper sourced directly from pristine highland estates and crafted for those who taste the difference.
-            </p>
-            <a class="cta" id="heroCta" href="#grades">Explore our harvest &amp; grades</a>
-          </div>
-          <div class="hero-ctrl">
-            <button class="arrow" id="prev" aria-label="Previous grade">&larr;</button>
-            <div class="grade-now">
-              <b id="gTier"></b>
-              <span id="gName"></span>
-              <div class="dots" id="dots"></div>
-            </div>
-            <button class="arrow" id="next" aria-label="Next grade">&rarr;</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- 2. THE PROBLEM (opaque: slides over the fixed 3D canvas) -->
-      <section id="problem">
-        <div class="sec-head">
-          <p class="kicker">01 &mdash; The silent crisis in your spice rack</p>
-          <h2>What are you<br />really consuming?</h2>
-          <p class="lead">
-            Walk down any supermarket aisle and you&rsquo;ll find jars of uniform, dusty black powder or lightweight berries that lack any real aromatic kick. Commercial mass production has turned one of history&rsquo;s most prized spices into a commodity stripped of its soul.
-          </p>
-        </div>
-
-        <div class="versus">
-          <figure class="vs vs-bad">
-            <img id="vsBad" alt="Mass-market pepper: hollow berries, papaya seeds and dust" />
-            <figcaption><b>Mass-market pepper</b><span>Hollow berries &middot; papaya seeds &middot; mineral-oil shine</span></figcaption>
-          </figure>
-          <div class="vs-mid" aria-hidden="true"><span>vs</span></div>
-          <figure class="vs vs-good">
-            <img id="vsGood" alt="Our pepper: dense, whole, wrinkled berries" />
-            <figcaption><b>Noir estate pepper</b><span>Dense &middot; whole &middot; single-origin</span></figcaption>
-          </figure>
-        </div>
-
-        <div class="crisis" id="crisisList"></div>
-
-        <div class="pledge">
-          <p class="kicker">Our pledge</p>
-          <p class="pledge-text">
-            We broke away from the supply chain entirely. What you buy from us is <em>single-origin, meticulously graded, and packed to preserve every microgram of natural essential oil.</em>
-          </p>
-        </div>
-      </section>
-
-      <!-- 3. THE GENESIS (transparent, pinned: the 3D pouch returns behind it) -->
-      <section id="story">
-        <div class="story-head">
-          <p class="kicker">02 &mdash; The genesis &middot; where gold grows</p>
-        </div>
-        <div class="story-word" id="storyWord">MIST</div>
-        <div class="chapters" id="chapters"></div>
-        <div class="chapter-bar">
-          <span class="cb-label" id="cbLabel">01 &mdash; Rooted in the mist</span>
-          <div class="cb-track"><i id="cbFill"></i></div>
-          <ul id="cbTicks"></ul>
-        </div>
-      </section>
-
-      <!-- 4. GRADES -->
-      <section id="grades">
-        <div class="sec-head">
-          <p class="kicker">03 &mdash; The art of grading</p>
-          <h2>Tailored purity.<br />Know your grade.</h2>
-          <p class="lead">
-            We believe in absolute transparency. Because every kitchen, chef and culinary artisan has a distinct requirement, we sort and categorize our harvest into three meticulous grades, available in customized quantities by the gram.
-          </p>
-        </div>
-        <div class="grade-grid" id="gradeGrid"></div>
-      </section>
-
-      <!-- 5. PROCESS -->
-      <section id="process">
-        <div class="sec-head">
-          <p class="kicker">04 &mdash; Why our process outperforms the rest</p>
-          <h2>What sets<br />us apart.</h2>
-        </div>
-        <div class="process-grid" id="processGrid"></div>
-      </section>
-
-      <!-- 6. CTA -->
-      <section id="cta">
-        <div class="storm-field" id="stormField"></div>
-        <div class="cta-inner">
-          <p class="kicker">05 &mdash; Heritage &amp; the final word</p>
-          <h2 class="cta-title"><span>Taste history.</span><span class="out">Taste purity.</span></h2>
-          <p class="cta-copy">
-            Spices once shaped empires because of their unmatched power to elevate food and heal the body. Don&rsquo;t settle for mass-market dust. Experience true, estate-grown black pepper where every single grain tells a story of soil, sun, and uncompromising integrity.
-          </p>
-          <p class="cta-ask"><b>Ready to elevate your culinary creations?</b> Inquire about our current harvest batch, check our pricing per gram, or request a sample pack for your kitchen today.</p>
-          <button class="cta big" id="ctaInquire">Inquire now &amp; secure your batch</button>
-        </div>
-      </section>
-    </main>
-
-    <footer class="foot">
-      <div class="foot-big">NOIR</div>
-      <p>A fan / portfolio concept for a single-origin black pepper brand. Brand name, copy and product details are illustrative. Every 3D object on this page is generated in code.</p>
-      <p class="mono">Three.js &middot; GSAP &middot; Lenis &middot; Vite</p>
-    </footer>
-
-    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-card">
-        <button class="modal-x" id="modalClose" aria-label="Close">&times;</button>
-        <form id="inquiryForm" novalidate>
-          <p class="kicker">Inquiry</p>
-          <h3 id="modalTitle">Secure your batch</h3>
-          <p class="modal-sub">Tell us what you need and we will reply with current harvest availability and pricing per gram.</p>
-          <div class="f-row">
-            <label>Name<input name="name" required autocomplete="name" /></label>
-            <label>Email or phone<input name="contact" required autocomplete="email" /></label>
-          </div>
-          <div class="f-row">
-            <label>Grade
-              <select name="grade" id="fGrade"></select>
-            </label>
-            <label>Quantity (grams)<input name="grams" id="fGrams" type="number" min="50" step="50" value="250" /></label>
-          </div>
-          <label>Message <small>(optional, e.g. request a sample pack)</small>
-            <textarea name="msg" rows="3"></textarea>
-          </label>
-          <p class="f-err" id="fErr" hidden>Please add your name and a way to reach you.</p>
-          <button class="cta" type="submit">Send inquiry</button>
-        </form>
-        <div class="modal-done" id="modalDone" hidden>
-          <p class="kicker">Inquiry received (demo)</p>
-          <h3>Thank you.</h3>
-          <p id="doneText"></p>
-          <button class="cta" id="doneClose">Back to the harvest</button>
-        </div>
+      </div>
+      <div>
+        <span>Company</span>
+        <a href="#process">Our Process</a>
+        <a href="#inquire">Inquire Now</a>
       </div>
     </div>
-    <div id="toast" role="status"></div>
+  </div>
+  <div class="wrap foot-legal">
+    © 2026 · ALL RIGHTS RESERVED
+  </div>
+</footer>
 
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<script src="reveal.js"></script>
+<script src="effects.js"></script>
+<script src="scroll.js"></script>
+</body>
 </html>
